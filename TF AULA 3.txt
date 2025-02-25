@@ -1,0 +1,68 @@
+# Dicionário para armazenar os produtos
+inventario = {}
+
+def adicionar_produto(nome, preco, quantidade):
+     
+
+
+    if nome in inventario:
+        inventario[nome]['quantidade'] += quantidade
+    else:
+        inventario[nome] = {'preco': preco, 'quantidade': quantidade}
+    print(f"Produto {nome} adicionado/atualizado com sucesso!")
+
+def remover_produto(nome):
+     
+
+
+    if nome in inventario:
+        del inventario[nome]
+        print(f"Produto {nome} removido com sucesso!")
+    else:
+        print(f"Produto {nome} não encontrado no inventário.")
+
+
+
+def listar_produtos():
+    """Lista todos os produtos no inventário."""
+    if inventario:
+        print("Inventário de Produtos:")
+        for nome, detalhes in inventario.items():
+            preco = detalhes['preco']
+            quantidade = detalhes['quantidade']
+            print(f"Nome: {nome}, Preço: {preco:.2f}, Quantidade: {quantidade}")
+    else:
+        print("O inventário está vazio.")
+
+def exibir_menu():
+    """Exibe o menu de opções para o usuário."""
+    print("\nMenu de Opções:")
+    print("1. Adicionar Produto")
+    print("2. Remover Produto")
+    print("3. Listar Produtos")
+    print("4. Sair")
+
+def main():
+    """Função principal que executa o programa de inventário."""
+    while True:
+        exibir_menu()
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '1':
+            nome = input("Nome do produto: ")
+            preco = float(input("Preço do produto: "))
+            quantidade = int(input("Quantidade do produto: "))
+            adicionar_produto(nome, preco, quantidade)
+        elif opcao == '2':
+            nome = input("Nome do produto a ser removido: ")
+            remover_produto(nome)
+        elif opcao == '3':
+            listar_produtos()
+        elif opcao == '4':
+            print("Encerrando o programa.")
+            break
+        else:
+            print("Opção inválida. Por favor, tente novamente.")
+
+if __name__ == "__main__":
+    main()
